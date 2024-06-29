@@ -120,4 +120,76 @@ public class Solution {
             System.out.println();
         }
     }
+
+    /**
+     * Longest subsequence of 1 in binary rep of a number
+     */
+    private void longestSubsetOf1inBinaryRepOfaNumber(int n){
+
+        /**
+         * The idea is based on the concept that the AND of bit sequence
+         * with a left shifted by 1 version of itself effectively removes
+         * the trailing 1 from every sequence of consecutive 1s.
+         *
+         * So the operation N = (N & (N << 1)) reduces length of every sequence
+         * of 1s by one in binary representation of N. If we keep doing this
+         * operation in a loop, we end up with N = 0. The number of iterations
+         * required to reach 0 is actually length of the longest consecutive sequence of 1s.
+         */
+
+        int count = 0;
+        while(n > 0) {
+            n&=(n<<1);
+            count++;
+        }
+        System.out.println(count);
+    }
+
+
+    /**
+     * check if OddOrNot
+     * @param n
+     * @return
+     */
+    private boolean isEven(int n) {
+        //1. XOR : we know if we XOR a number with 1 it reduce by 1 if odd and increment by 1 if even
+        return (n^1) == (n+1);
+
+        //2. AND : when you do & with 1, it will become 1 if odd and 0 is even
+        //return (n & 1) == 0;
+
+        //3. OR : when you do OR with 1 , the number will remain same if even
+        //return (n | 1) != n;
+
+        //4. >> << - when you do a number left shift it will loose one and then do right shift it will gain a 0
+        //if a numbe remains  same then even otherise odd
+        //int y  = n >> 1;
+        //return n == (y<<1);
+    }
+
+    /**
+     * Find log 2 base of 32 bit Integer
+     * @param n
+     */
+    private void find2BaseOf32BitInteger(int n){
+        //keep shifting right until it becomes 0;
+        int count = 0;
+        while(n != 0){
+            n>>=1;
+            count++;
+        }
+
+        System.out.println(count);
+    }
+
+    private void flipBits(int n ){
+        System.out.println(n^((1<<n)-1));
+    }
+
+    /**
+     * Given a number N, find the most significant set bit in a number
+     */
+    private void findMSB(int n) {
+        
+    }
 }
